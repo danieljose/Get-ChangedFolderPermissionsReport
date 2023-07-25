@@ -46,7 +46,7 @@ $accessMask = [ordered]@{
 # Function to generate permission string from an ACL
 function Get-PermissionString ($Acl) {
     $Permissions = $Acl.Access | Where-Object { $ExcludeUsers -notcontains $_.IdentityReference.Value } | ForEach-Object {
-        $fileSystemRights = [uint32]$_.FileSystemRights.value__
+        $fileSystemRights = [int32]$_.FileSystemRights.value__
         $username = $_.IdentityReference
         $accessControlType = $_.AccessControlType
         $permList = $accessMask.Keys |
